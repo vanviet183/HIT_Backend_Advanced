@@ -1,11 +1,13 @@
 package com.vitvn183.demouploadfile.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +27,8 @@ public class Document {
     private String path;
 
     private Integer pages;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "document")
+    @JsonIgnore
+    private List<Segment> segments;
 }
