@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "documents")
 public class Document {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -11,11 +11,8 @@ import java.io.IOException;
 @SpringBootApplication
 public class DemoUploadFileApplication {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(DemoUploadFileApplication.class, args);
-
-        Test.test();
-
     }
 
 }

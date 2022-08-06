@@ -1,5 +1,6 @@
 package com.vitvn183.demouploadfile.services.impl;
 
+import com.vitvn183.demouploadfile.common.CommonConstant;
 import com.vitvn183.demouploadfile.entities.Document;
 import com.vitvn183.demouploadfile.entities.Segment;
 import com.vitvn183.demouploadfile.repositories.DocumentRepository;
@@ -50,10 +51,11 @@ public class SegmentServiceImpl implements SegmentService {
 
     @Override
     @Transactional
-    public void writeDocx(Long documentId) throws Exception {
+    public void writeToDocument(Long documentId) throws Exception {
         WordprocessingMLPackage wordPackage = WordprocessingMLPackage.createPackage();
         MainDocumentPart mainDocumentPart = wordPackage.getMainDocumentPart();
         ObjectFactory factory = Context.getWmlObjectFactory();
+
         for(Segment paragraph : segmentRepository.findByDocument_IdAnAndPaAndParagraphNull(documentId)) {
             P p = factory.createP();
             for(Segment run : paragraph.getRuns()) {
@@ -83,12 +85,12 @@ public class SegmentServiceImpl implements SegmentService {
             mainDocumentPart.getContent().add(p);
         }
         Optional<Document> document = documentRepository.findById(documentId);
-//        Path path = CURRENT_FOLDER.resolve(CommonConstant.staticPath)
-//                .resolve(CommonConstant.responsePath).resolve(document.get().getFileName());
-//        if (!Files.exists(CURRENT_FOLDER.resolve(CommonConstant.staticPath).resolve(CommonConstant.responsePath))) {
-//            Files.createDirectories(CURRENT_FOLDER.resolve(CommonConstant.staticPath).resolve(CommonConstant.responsePath));
-//        }
-//        wordPackage.save(new File(String.valueOf(path)));
+        Path path = CURRENT_FOLDER.resolve(CommonConstant.staticPath)
+                .resolve(CommonConstant.responsePath).resolve(document.get().getFileName());
+        if (!Files.exists(CURRENT_FOLDER.resolve(CommonConstant.staticPath).resolve(CommonConstant.responsePath))) {
+            Files.createDirectories(CURRENT_FOLDER.resolve(CommonConstant.staticPath).resolve(CommonConstant.responsePath));
+        }
+        wordPackage.save(new File(String.valueOf(path)));
     }
 
     @Override

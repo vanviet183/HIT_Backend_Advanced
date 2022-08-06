@@ -19,7 +19,7 @@ public interface SegmentService {
 
     void saveSegment(List<Object> jaxbNodes, Document document) throws Exception;
 
-    void writeDocx(Long documentId) throws Exception;
+    void writeToDocument(Long documentId) throws Exception;
 
     void deleteDocument(Long id);
 

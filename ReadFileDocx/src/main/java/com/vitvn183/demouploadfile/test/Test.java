@@ -10,11 +10,12 @@ import org.json.JSONException;
 import org.json.*;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 public class Test {
     public static void test() throws Exception {
+
+        // Cach ruom ra
 
         String sourceFile = "E:\\HIT_CLUB\\HIT_BackEnd_Advanced\\ReadFileDocx\\test - root.docx";
 
